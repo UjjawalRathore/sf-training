@@ -4,23 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="ass.js"></script>
 </head>
 <body>
-    <button onclick="showCompanyDetails()">Show Company Details</button>
-    <table id="companyTable" style="display: none;">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>HQ</th>
-                <th>India_Location</th>
-            </tr>
-        </thead>
-        <ul>
-            <tbody id = "comanyBody">
-
-            </tbody>
-        </ul>
-    </table>
-    <script src="ass.js"></script>
+    <div class="ui container">
+        <button onclick="showInfo()">Show Info</button>
+        <hr/>
+        <h1>Company Information</h1>
+        <div id="companyInformation">Info will come here on click of button</div>
+      </div>
+    
 </body>
 </html>
