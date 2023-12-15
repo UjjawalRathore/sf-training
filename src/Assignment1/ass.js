@@ -9,6 +9,17 @@ const companies = [
   companies.forEach(function(company) {
     console.log(company.name + ': ' + company.hq);
   });
+
+
+
+
+
+  //MY SOLUTION
+  // console.log(companies.length);
+  // for(let i=0;i<companies.length;i++)
+  //     console.log(companies[i].name);
+  // for(let i=0;i<companies.length;i++)
+  //     console.log("headquarter of "+companies[i].name+" is "+companies[i].hq);
   
   
   //Task 2 Solution
