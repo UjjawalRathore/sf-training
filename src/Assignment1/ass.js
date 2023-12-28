@@ -48,3 +48,6 @@ const companies = [
     //Step 3
     companyInfoDiv.innerHTML = outputHtmlSnippet;
   }
+
+
+  
