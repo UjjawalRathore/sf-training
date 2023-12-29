@@ -126,9 +126,6 @@ async function getCastHtml(cast) {
                     <div class="meta">
                         ${cr.birthday}
                     </div>
-                    <div class="description">
-                        ${cr.biography}
-                    </div>
                 </div>
             </div>
         `
