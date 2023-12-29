@@ -96,42 +96,43 @@ function showMovie(id, posterPath) {
     const movieInfo = data.movies.find(movie => {
         return movie.tmdbId === id;
     })
-    getCastHtml(movieInfo.cast);
+    getCastHtml(movieInfo.cast)
+    .then(castHtml => {
+        document.getElementById('castInfo').innerHTML = castHtml;
+    })
 
     document.getElementById('title').innerHTML = movieInfo.title;
     document.getElementById('overview').innerHTML = movieInfo.overview;
     document.getElementById('moviePoster').innerHTML = `<img src = '${imageUrl}${posterPath}'/>`;
 }
 
-function getCastHtml(cast) {
+async function getCastHtml(cast) {
     const castFetchArray = cast.map(cm => {
         return (
             fetch(`${personUrl}${cm.id}?api_key=${apiKey}`)
             .then(response => response.json())
         )
     })
-    Promise.all(castFetchArray)
-    .then(castResponse => {
-        let castHtml = '<div class="ui cards">'
-        castResponse.forEach(cr => {
-            castHtml += `
-                <div class="card">
-                    <div class="content">
-                        <img class="right floated mini ui image" src="${imageUrl}${cr.profile_path}">
-                        <div class="header">
-                            ${cr.name}
-                        </div>
-                        <div class="meta">
-                            ${cr.birthday}
-                        </div>
-                        <div class="description">
-                            ${cr.biography}
-                        </div>
+    const castResponse = await Promise.all(castFetchArray)
+    let castHtml = '<div class="ui cards">'
+    castResponse.forEach(cr => {
+        castHtml += `
+            <div class="card">
+                <div class="content">
+                    <img class="right floated mini ui image" src="${imageUrl}${cr.profile_path}">
+                    <div class="header">
+                        ${cr.name}
+                    </div>
+                    <div class="meta">
+                        ${cr.birthday}
+                    </div>
+                    <div class="description">
+                        ${cr.biography}
                     </div>
                 </div>
-            `
-        })
-        castHtml += '</div>'
-        document.getElementById('castInfo').innerHTML = castHtml;
-    });
+            </div>
+        `
+    })
+    castHtml += '</div>'
+    return castHtml;
 }
